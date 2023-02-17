@@ -58,9 +58,17 @@ public class ButtonEvent extends BD implements ActionListener {
         String LastWEBais = "";
             while (!Objects.equals(LastAISBP, LastWEBais)) {
                 while (ListAISBP.size() != ListView.size()) {
+                    List<String> myValuess = new ArrayList<>();
+                    myValuess.clear();
+                    myValuess = driver1.findElements(By.xpath("//*[text()='Невыводимые поля']/parent::vaadin-grid-cell-content/following-sibling::vaadin-grid-cell-content[@draggable='true']"))
+                            .stream()
+                            .map(option -> option.getAttribute("innerText").trim().replaceAll("  ", " "))
+                            .collect(Collectors.toList());
                     //while (ListAISBP.size() != ListView.size()) {
+                    if (ListView.containsAll(myValuess)) {
                         JavascriptExecutor js = (JavascriptExecutor) driver1;
-                        js.executeScript("document.querySelector('#overlay > flow-component-renderer > div > vaadin-vertical-layout > vaadin-vertical-layout:nth-child(3) > vaadin-horizontal-layout:nth-child(1) > vaadin-grid:nth-child(1)').shadowRoot.querySelector('#table').scrollBy(0,10)");
+                        js.executeScript("document.querySelector('#overlay > flow-component-renderer > div > vaadin-vertical-layout > vaadin-vertical-layout:nth-child(3) > vaadin-horizontal-layout:nth-child(1) > vaadin-grid:nth-child(1)').shadowRoot.querySelector('#table').scrollBy(0,20)");
+                    }
                     while (19 > Locator) {
                         WebElement SSS = driver1.findElement(By.xpath("//*[text()='Невыводимые поля']/parent::vaadin-grid-cell-content/following-sibling::vaadin-grid-cell-content[@draggable='true'][" + Locator + "]"));
                         ListS = SSS.getAttribute("innerText");
@@ -79,7 +87,7 @@ public class ButtonEvent extends BD implements ActionListener {
                         }
                     }
                 //}
-                Locator = Locator - 17;
+                Locator = Locator - 18;
                 int SizeListWeb = ListView.size() - 1;
                 LastWEBais = ListView.get(SizeListWeb);
             }

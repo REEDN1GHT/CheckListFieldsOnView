@@ -41,7 +41,7 @@ public class SQL extends BD {
     public List<String> SqlFormFieldsLeft() {
     try {
         Statement statementFormView = getConnectionBudget23KF().createStatement();
-        String SQLField ="SELECT Views_FormsFields.FieldID, StatusID, Position, DefPos, Caption, Visible, Total, Parameter, Views_QueriesSelect.Filter FROM Views_FormsFields\n" +
+        String SQLField ="SELECT distinct Position, DefPos, Caption, Visible, Total, Parameter, Views_QueriesSelect.Filter FROM Views_FormsFields\n" +
                 "join Views_Fields on Views_Fields.ID = Views_FormsFields.FieldID\n" +
                 "join Views_QueriesSelect on Views_QueriesSelect.FieldID = Views_FormsFields.FieldID and Views_QueriesSelect.QueryID = Views_FormsFields.QueryID\n" +
                 "where FormID =\'" + FormID + "\'" +
@@ -61,7 +61,7 @@ public class SQL extends BD {
     public List<String> SqlFormFieldsRight() {
         try {
             Statement statementFormView = getConnectionBudget23KF().createStatement();
-            String SQLField ="SELECT Views_FormsFields.FieldID, StatusID, Position, DefPos, Caption, Visible, Total, Parameter, Views_QueriesSelect.Filter FROM Views_FormsFields\n" +
+            String SQLField ="SELECT distinct Position, DefPos, Caption, Visible, Total, Parameter, Views_QueriesSelect.Filter FROM Views_FormsFields\n" +
                     "join Views_Fields on Views_Fields.ID = Views_FormsFields.FieldID\n" +
                     "join Views_QueriesSelect on Views_QueriesSelect.FieldID = Views_FormsFields.FieldID and Views_QueriesSelect.QueryID = Views_FormsFields.QueryID\n" +
                     "where FormID =\'" + FormID + "\'" +
