@@ -13,12 +13,12 @@ public class GUI extends JFrame{
 
     public static JLabel LnameForm = new JLabel("Название формы просмотра");
     public static JTextField TNameForm = new JTextField("Просмотр росписи расходов", 256);
-    public static JLabel LXpath = new JLabel("Xpath до списка");
-
+    public static JLabel URLforView = new JLabel("URL просмотра");
+    public static JTextField  TextURLforView = new JTextField("https://asbpek-test.aisa.ru/lk/tabs?tabs=21%D0%AD1&selectedTab=21%D0%AD1");
     public static JLabel Llogin = new JLabel("Логин");
-    public static JTextField Tlogin = new JTextField("edo1", 100);
+    public static JTextField Tlogin = new JTextField("UKT_RiabtsevWeb", 100);
     public static JLabel Lpassword = new JLabel("Пароль");
-    public static JTextField Tpassword = new JTextField("edo1edo1", 100);
+    public static JTextField Tpassword = new JTextField("UKT_RiabtsevWeb1", 100);
     public static JRadioButton Joption = new JRadioButton("Настройки");
     public static JRadioButton Jfilters = new JRadioButton("Фильтры");
     public static JButton ConfirmButton = new JButton("Выполнить");
@@ -31,21 +31,20 @@ public class GUI extends JFrame{
     public static WebDriverWait wait1;
 
     public GUI() {
-        super("CheckDropRS");
-        this.setBounds(200, 200, 750, 300);
+        super("CheckListsWEB");
+        this.setBounds(200, 200, 400, 400);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Container container = this.getContentPane();
-        container.setLayout(new GridLayout(3,3,3,3));
+        container.setLayout(new GridLayout(5,2,3,3));
         container.add(LnameForm);
-        container.add(Llogin);
-        container.add(Lpassword);
         container.add(TNameForm);
+        container.add(Llogin);
         container.add(Tlogin);
+        container.add(Lpassword);
         container.add(Tpassword);
-        container.add(Joption);
-        container.add(Jfilters);
-        Joption.setSelected(true);
+        container.add(URLforView);
+        container.add(TextURLforView);
         container.add(ConfirmButton);
         ConfirmButton.addActionListener(new ButtonEvent());
     }

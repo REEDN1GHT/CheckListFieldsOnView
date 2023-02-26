@@ -38,14 +38,35 @@ public class SQL extends BD {
         }
     }
 
-    public List<String> SqlFormFieldsLeft() {
+    public List<String> SqlFormFields() {
     try {
         Statement statementFormView = getConnectionBudget23KF().createStatement();
-        String SQLField ="SELECT distinct Position, DefPos, Caption, Visible, Total, Parameter, Views_QueriesSelect.Filter FROM Views_FormsFields\n" +
+        String SQLField ="SELECT distinct Position, DefPos, Caption = (SELECT CASE WHEN Caption = 'Год 2013' THEN 'Год 2023' \n" +
+                "                                       when Caption = 'Год 2014' THEN 'Год 2024'\n" +
+                "                                       when Caption = 'Год 2015' THEN 'Год 2025'" +
+                "                                       when Caption = 'Оценка 2012' THEN 'Оценка 2022'\n" +
+                "                                       when Caption = 'Оценка 2012 без КВ' THEN 'Оценка 2022 без КВ'\n" +
+                "                                       when Caption = 'Оценка 2013' THEN 'Оценка 2023'\n" +
+                "                                       when Caption = 'Оценка 2013 без КВ' THEN 'Оценка 2023 без КВ'\n" +
+                "                                       when Caption = 'Оценка 2014' THEN 'Оценка 2024'\n" +
+                "                                       when Caption = 'Оценка 2014 без КВ' THEN 'Оценка 2024 без КВ'\n" +
+                "                                       when Caption = 'План 2012' THEN 'План 2022'\n" +
+                "                                       when Caption = 'План 2012 без КВ' THEN 'План 2022 без КВ'\n" +
+                "                                       when Caption = 'План 2013' THEN 'План 2023'\n" +
+                "                                       when Caption = 'План 2013 без КВ' THEN 'План 2023 без КВ'\n" +
+                "                                       when Caption = 'План 2014' THEN 'План 2024'\n" +
+                "                                       when Caption = 'План 2014 без КВ' THEN 'План 2024 без КВ'\n" +
+                "                                       when Caption = 'План 2015' THEN 'План 2025'\n" +
+                "                                       when Caption = 'План 2015 без КВ' THEN 'План 2025 без КВ'\n" +
+                "                                       when Caption = 'План 2016 без КВ' THEN 'План 2026 без КВ'\n" +
+                "                                       when Caption = 'Факт 2012 без КВ' THEN 'Факт 2022 без КВ'\n" +
+                "                                       when Caption = 'Факт 2012' THEN 'Факт 2022'" +
+                "                                       when Caption = 'Прогноз 2016' THEN 'Прогноз 2026'" +
+                " ELSE \"caption\" end), Visible, Total, Parameter, Views_QueriesSelect.Filter FROM Views_FormsFields\n" +
                 "join Views_Fields on Views_Fields.ID = Views_FormsFields.FieldID\n" +
                 "join Views_QueriesSelect on Views_QueriesSelect.FieldID = Views_FormsFields.FieldID and Views_QueriesSelect.QueryID = Views_FormsFields.QueryID\n" +
                 "where FormID =\'" + FormID + "\'" +
-                "and position is null\n" +
+                "and visible ='true' \n" +
                 "and Views_FormsFields.QueryID =" + RequestID;
         ResultSet result = statementFormView.executeQuery(SQLField);
         while (result.next()) {
@@ -82,12 +103,34 @@ public class SQL extends BD {
     public List<String> SqlFormFilters(){
         try{
             Statement statementFormFilters = getConnectionBudget23UKT().createStatement();
-            String SqlFilters = "SELECT Views_FormsFields.FieldID, StatusID, Position, DefPos, Caption, Visible, Total, Parameter, Views_QueriesSelect.Filter FROM Views_FormsFields\n" +
+            String SqlFilters = "SELECT distinct Position, DefPos, Caption = (SELECT CASE WHEN Caption = 'Год 2013' THEN 'Год 2023' \n" +
+                    "                                       when Caption = 'Год 2014' THEN 'Год 2024'\n" +
+                    "                                       when Caption = 'Год 2015' THEN 'Год 2025'" +
+                    "                                       when Caption = 'Оценка 2012' THEN 'Оценка 2022'\n" +
+                    "                                       when Caption = 'Оценка 2012 без КВ' THEN 'Оценка 2022 без КВ'\n" +
+                    "                                       when Caption = 'Оценка 2013' THEN 'Оценка 2023'\n" +
+                    "                                       when Caption = 'Оценка 2013 без КВ' THEN 'Оценка 2023 без КВ'\n" +
+                    "                                       when Caption = 'Оценка 2014' THEN 'Оценка 2024'\n" +
+                    "                                       when Caption = 'Оценка 2014 без КВ' THEN 'Оценка 2024 без КВ'\n" +
+                    "                                       when Caption = 'План 2012' THEN 'План 2022'\n" +
+                    "                                       when Caption = 'План 2012 без КВ' THEN 'План 2022 без КВ'\n" +
+                    "                                       when Caption = 'План 2013' THEN 'План 2023'\n" +
+                    "                                       when Caption = 'План 2013 без КВ' THEN 'План 2023 без КВ'\n" +
+                    "                                       when Caption = 'План 2014' THEN 'План 2024'\n" +
+                    "                                       when Caption = 'План 2014 без КВ' THEN 'План 2024 без КВ'\n" +
+                    "                                       when Caption = 'План 2015' THEN 'План 2025'\n" +
+                    "                                       when Caption = 'План 2015 без КВ' THEN 'План 2025 без КВ'\n" +
+                    "                                       when Caption = 'План 2016 без КВ' THEN 'План 2026 без КВ'\n" +
+                    "                                       when Caption = 'Факт 2012 без КВ' THEN 'Факт 2022 без КВ'\n" +
+                    "                                       when Caption = 'Факт 2012' THEN 'Факт 2022'" +
+                    "                                       when Caption = 'Прогноз 2016' THEN 'Прогноз 2026'" +
+                    " ELSE \"caption\" end), Visible, Total, Parameter, Views_QueriesSelect.Filter FROM Views_FormsFields\n" +
                     "join Views_Fields on Views_Fields.ID = Views_FormsFields.FieldID\n" +
                     "join Views_QueriesSelect on Views_QueriesSelect.FieldID = Views_FormsFields.FieldID and Views_QueriesSelect.QueryID = Views_FormsFields.QueryID\n" +
                     "where FormID =\'" + FormID + "\'" +
-                    "and Views_FormsFields.QueryID =\'" + RequestID + "\'" +
-                    "and Views_QueriesSelect.Filter='true'";
+                    "and visible ='true' \n" +
+                    "and Views_QueriesSelect.Filter='true' \n" +
+                    "and Views_FormsFields.QueryID =" + RequestID;
             ResultSet result = statementFormFilters.executeQuery(SqlFilters);
             while (result.next()) {
                 String Field = result.getString("Caption");
