@@ -2,5 +2,7 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Новая папка/CheckListFieldsOnView" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/Новая папка/Архив ZIP - WinRAR (2)" vcs="Git" />
   </component>
 </project>

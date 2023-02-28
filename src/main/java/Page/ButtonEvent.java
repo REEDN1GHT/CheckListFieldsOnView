@@ -2,16 +2,18 @@ package Page;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 
@@ -28,6 +30,7 @@ public class ButtonEvent extends BD implements ActionListener {
     public static String staticPassword;
     public static String URLUKT = "https://asbpek-test.aisa.ru/login";
     public static String ListS;
+    public static int staticDelay;
     public static List<String> ListOptionsWeb;
     public static List<String> ListOptionsAISBP;
     public static List<String> ListFiltersWeb = new ArrayList<>();
@@ -60,8 +63,8 @@ public class ButtonEvent extends BD implements ActionListener {
         WebElement shadow = driver1.findElement(By.xpath("/html/body/vaadin-combo-box-overlay"));
         WebElement element1 = driver1.findElement(By.xpath("//*[@role='listbox']"));
         JavascriptExecutor js = (JavascriptExecutor) driver1;
-        js.executeScript("arguments[0].setAttribute(arguments[1], arguments[2]);",shadow,"style", "height: 220000px;" );
-        js.executeScript("arguments[0].setAttribute(arguments[1], arguments[2]);",element1, "style","max-height: 65000vh;;");
+        js.executeScript("arguments[0].setAttribute(arguments[1], arguments[2]);",shadow,"style", "height: 2200000px;");
+        js.executeScript("arguments[0].setAttribute(arguments[1], arguments[2]);",element1, "style","height: 65000px;");
     }
     public void ReSizeOptions()
     {
@@ -81,24 +84,46 @@ public class ButtonEvent extends BD implements ActionListener {
     public void ReSizeFilters() {
         ReSizeAttributeSR();
         try {
-            Thread.sleep(400);
+            Thread.sleep(5000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
         CheckListFiltersNEW();
         ListFiltersWeb.addAll(PreventiveList);
-        PreventiveList.clear();
-        int set = 0;
-        while (set < 90) {
-            driver1.findElement(By.xpath("//input[@role='combobox']")).sendKeys(Keys.DOWN);
-            set = set+1;
-        }
-            CheckListFiltersNEW();
-            ListFiltersWeb.removeAll(PreventiveList);
-            ListFiltersWeb.addAll(PreventiveList);
+//        PreventiveList.clear();
+//        int set = 0;
+//        while (set < 90) {
+//            driver1.findElement(By.xpath("//input[@role='combobox']")).sendKeys(Keys.DOWN);
+//            set = set+1;
+//        }
+//            CheckListFiltersNEW();
+//            ListFiltersWeb.removeAll(PreventiveList);
+//        ListFiltersWeb.addAll(PreventiveList);
         Collections.sort(ListFiltersWeb);
         System.out.println(ListFiltersWeb);
     }
+
+    public void ListFiilters() {
+        int numElement = 0;
+        int numAttribute = 0;
+        int size = ListFiltersWeb.size();
+        driver1.findElement(By.xpath("//input[@role='combobox']")).sendKeys(Keys.DOWN);
+        while (numElement == numAttribute) {
+            String AttributeElement = driver1.findElement(By.xpath("//input[@role='combobox']")).getAttribute("aria-activedescendant");
+            numAttribute = Integer.parseInt(AttributeElement.replace("vaadin-combo-box-item-", ""));
+            numElement = numElement + 1;
+            String InnerText = driver1.findElement(By.xpath("//*[@id= \'" + AttributeElement + "\']")).getAttribute("innerText");
+            ListFiltersWeb.add(InnerText);
+            size = ListFiltersWeb.size();
+            driver1.findElement(By.xpath("//input[@role='combobox']")).sendKeys(Keys.DOWN);
+            AttributeElement = driver1.findElement(By.xpath("//input[@role='combobox']")).getAttribute("aria-activedescendant");
+            numAttribute = Integer.parseInt(AttributeElement.replace("vaadin-combo-box-item-", ""));
+        }
+        Collections.sort(ListFiltersWeb);
+        System.out.println("web " + ListFiltersWeb);
+
+    }
+
     public List<String> CheckListOptionsNew() {
          ListOptionsWeb = driver1.findElements(By.xpath("//vaadin-grid-cell-content[@draggable='true']"))
                 .stream()
@@ -174,6 +199,27 @@ public class ButtonEvent extends BD implements ActionListener {
         return ListOptionsWeb;
     }
 
+    static void saveToFile(String text) throws IOException {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("Results\\Result.txt"));
+            writer.write(text.replaceAll(",","\n"));
+            writer.close();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+    public void waitContentPage()
+    {
+        var newWait = new WebDriverWait(driver1, Duration.ofSeconds(staticDelay));
+        newWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//flow-component-renderer")));
+
+    }
+    public void waitContentOptions()
+    {
+        var newWait = new WebDriverWait(driver1, Duration.ofSeconds(staticDelay));
+        newWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='overlay']/h2")));
+    }
+
     public void actionPerformed(ActionEvent e) {
         System.setProperty("webdriver.chrome.driver","drivers\\chromedriver.exe");
         driver1 = new ChromeDriver();
@@ -184,6 +230,7 @@ public class ButtonEvent extends BD implements ActionListener {
         staticPassword = Tpassword.getText();
         staticNameForm = TNameForm.getText();
         staticURLforView = TextURLforView.getText();
+        staticDelay = Integer.parseInt(Delay.getText());
         driver1.navigate().to(URLUKT);
         requestSQL.SqlForm();
         try {
@@ -200,24 +247,37 @@ public class ButtonEvent extends BD implements ActionListener {
             throw new RuntimeException(ex);
         }
         driver1.navigate().to(staticURLforView);
-        try {
-            Thread.sleep(5500);
-        } catch (InterruptedException ex) {
-            throw new RuntimeException(ex);
-        }
+        waitContentPage();
         OpenOptions();
+        waitContentOptions();
+        ReSizeOptions();
+        OpenFilters();
         try {
             Thread.sleep(2000);
         } catch (InterruptedException ex) {
             throw new RuntimeException(ex);
         }
-        ReSizeOptions();
-        OpenFilters();
-        ReSizeFilters();
+        ListFiilters();
         List<String> ResultOptionsWeb = ListOptionsWeb;
         List<String> ResultOptionsAIS = requestSQL.SqlFormFields();
         List<String> ResultFiltersWeb = ListFiltersWeb;
         List<String> ResultFiltersAIS = requestSQL.SqlFormFilters();
+        System.out.println("AIS " + ResultFiltersAIS);
+        List<String> duplicatesFilters = ResultFiltersWeb.stream()
+                .collect(Collectors.groupingBy(Function.identity()))
+                .entrySet()
+                .stream()
+                .filter(ee -> ee.getValue().size() > 1)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
+        List<String> duplicatesOptions = ResultOptionsWeb.stream()
+                .collect(Collectors.groupingBy(Function.identity()))
+                .entrySet()
+                .stream()
+                .filter(ee -> ee.getValue().size() > 1)
+                .map(Map.Entry::getKey)
+                .collect(Collectors.toList());
+        System.out.println("duplicates " + duplicatesFilters);
         int SizeOptionsWEB = ResultOptionsWeb.size();
         int SizeOptionsSQL = ResultOptionsAIS.size();
         int SizeFiltersWEB = ResultFiltersWeb.size();
@@ -233,16 +293,20 @@ public class ButtonEvent extends BD implements ActionListener {
             if (SizeOptionsWEB>SizeOptionsSQL) {
                 ResultOptionsWeb.removeAll(ResultOptionsAIS);
                 messageOptions += "Списки настроек различаются " + "Веб АИС БП " + SizeOptionsWEB + " Десктоп АИС БП " + SizeOptionsSQL + "\n";
-                messageOptions += "Кол-во ошибочных значений " + ResultOptionsWeb.size() + "\n";
+                messageOptions += "Отсутствующие значения в десктоп АИС БП " + ResultOptionsWeb.size() + "\n";
                 messageOptions += "Список значений" + "\n";
                 messageOptions += ResultOptionsWeb + "\n";
+                messageOptions += "Список дубликатов" + "\n";
+                messageOptions += duplicatesOptions + "\n";
                 messageOptions += "------------------------" + "\n";
             } else {
                 ResultOptionsAIS.removeAll(ResultOptionsWeb);
                 messageOptions += "Списки настроек различаются " + "Веб АИС БП " + SizeOptionsWEB + " Десктоп АИС БП " + SizeOptionsSQL + "\n";
-                messageOptions += "Кол-во ошибочных значений " + ResultOptionsAIS.size() + "\n";
+                messageOptions += "Отсутствующие значения в Веб АИС БП  " + ResultOptionsAIS.size() + "\n";
                 messageOptions += "Список значений" + "\n";
                 messageOptions += ResultOptionsAIS + "\n";
+                messageOptions += "Список дубликатов" + "\n";
+                messageOptions += duplicatesOptions + "\n";
                 messageOptions += "------------------------" + "\n";
             }
         }
@@ -252,16 +316,25 @@ public class ButtonEvent extends BD implements ActionListener {
             if (SizeFiltersWEB>SizeFiltersSQL) {
                 ResultFiltersWeb.removeAll(ResultFiltersAIS);
                 messageOptions += "Списки фильтров различаются " + "Веб АИС БП " + SizeFiltersWEB + " Десктоп АИС БП " + SizeFiltersSQL + "\n";
-                messageOptions += "Кол-во ошибочных значений " + ResultFiltersWeb.size() + "\n";
+                messageOptions += "Отсутствующие значения в десктоп АИС БП " + ResultFiltersWeb.size() + "\n";
                 messageOptions += "Список значений" + "\n";
                 messageOptions += ResultFiltersWeb + "\n";
+                messageOptions += "Список дубликатов" + "\n";
+                messageOptions += duplicatesFilters + "\n";
             } else {
                 ResultFiltersAIS.removeAll(ResultFiltersWeb);
                 messageOptions += "Списки фильтров различаются " + "Веб АИС БП " + SizeFiltersWEB + " Десктоп АИС БП " + SizeFiltersSQL + "\n";
-                messageOptions += "Кол-во ошибочных значений " + ResultFiltersAIS.size() + "\n";
+                messageOptions += "Отсутствующие значения в Веб АИС БП " + ResultFiltersAIS.size() + "\n";
                 messageOptions += "Список значений" + "\n";
                 messageOptions += ResultFiltersAIS + "\n";
+                messageOptions += "Список дубликатов" + "\n";
+                messageOptions += duplicatesFilters + "\n";
             }
+        }
+        try {
+            saveToFile(messageOptions);
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
         }
         JOptionPane.showConfirmDialog(null, messageOptions.replaceAll(",", "\n"), "Result", JOptionPane.DEFAULT_OPTION);
         SizeFiltersSQL = 0;

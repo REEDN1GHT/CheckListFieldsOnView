@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="334d5501-ff50-4432-acac-1c4435baeba2" name="Changes" comment="Билд с работающими настройками">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/CheckListFieldsOnView_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/CheckListFieldsOnView-1.0-SNAPSHOT-jar-with-dependencies.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/MANIFEST.MF" afterDir="false" />
+    <list default="true" id="334d5501-ff50-4432-acac-1c4435baeba2" name="Changes" comment="Actual Build v0.1.0">
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CheckListFieldsOnView-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" afterPath="$PROJECT_DIR$/CheckListFieldsOnView-1.0-SNAPSHOT-jar-with-dependencies.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Page/ButtonEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/ButtonEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Page/SQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/SQL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/GUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -49,7 +46,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Program Files (x86)/Bloody7/Bloody7/Data/Mouse/English/ScriptsMacros/GunLib/BNS/moveOS1.amc&quot;,
+    &quot;last_opened_file_path&quot;: &quot;T:/aisbpek&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
@@ -103,7 +100,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676652899282</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Actual Build v0.1.0">
+      <created>1677448455364</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1677448455364</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -132,20 +136,30 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="initial commit v0.0.1" />
     <MESSAGE value="Билд с работающими настройками" />
-    <option name="LAST_COMMIT_MESSAGE" value="Билд с работающими настройками" />
+    <MESSAGE value="Actual Build v0.1.0" />
+    <option name="LAST_COMMIT_MESSAGE" value="Actual Build v0.1.0" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Page/ButtonEvent.java</url>
-          <line>133</line>
+          <line>158</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Page/ButtonEvent.java</url>
-          <line>81</line>
+          <line>84</line>
           <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/Page/ButtonEvent.java</url>
+          <line>105</line>
+          <properties class="Page.ButtonEvent" method="ListFiilters">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
