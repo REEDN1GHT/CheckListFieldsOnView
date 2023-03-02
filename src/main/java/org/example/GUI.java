@@ -33,7 +33,7 @@ public class GUI extends JFrame{
     public static WebDriverWait wait1;
 
     public GUI() {
-        super("CheckListsWEB");
+        super("CheckListsWEB v.1.8.0 от 02.03.2023");
         this.setBounds(200, 200, 400, 400);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

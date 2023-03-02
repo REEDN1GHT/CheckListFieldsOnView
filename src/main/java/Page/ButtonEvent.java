@@ -210,9 +210,8 @@ public class ButtonEvent extends BD implements ActionListener {
     }
     public void waitContentPage()
     {
-        var newWait = new WebDriverWait(driver1, Duration.ofSeconds(staticDelay));
-        newWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//flow-component-renderer")));
-
+        var newWait = new WebDriverWait(driver1, Duration.ofSeconds(30));
+        newWait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='ROOT-2521314']/vaadin-app-layout/vaadin-vertical-layout/div/vaadin-vertical-layout/vaadin-vertical-layout/div")));
     }
     public void waitContentOptions()
     {
@@ -250,6 +249,11 @@ public class ButtonEvent extends BD implements ActionListener {
         waitContentPage();
         OpenOptions();
         waitContentOptions();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
         ReSizeOptions();
         OpenFilters();
         try {
