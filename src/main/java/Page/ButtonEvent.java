@@ -2,6 +2,7 @@ package Page;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -210,8 +211,8 @@ public class ButtonEvent extends BD implements ActionListener {
     }
     public void waitContentPage()
     {
-        var newWait = new WebDriverWait(driver1, Duration.ofSeconds(30));
-        newWait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//*[@id='ROOT-2521314']/vaadin-app-layout/vaadin-vertical-layout/div/vaadin-vertical-layout/vaadin-vertical-layout/div")));
+        var newWait = new WebDriverWait(driver1, Duration.ofSeconds(staticDelay));
+        newWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='ROOT-2521314']/vaadin-app-layout/vaadin-vertical-layout/div/div/vaadin-vertical-layout/vaadin-vertical-layout/vaadin-grid/vaadin-grid-cell-content[1]/vaadin-grid-sorter")));
     }
     public void waitContentOptions()
     {
@@ -221,7 +222,9 @@ public class ButtonEvent extends BD implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         System.setProperty("webdriver.chrome.driver","drivers\\chromedriver.exe");
-        driver1 = new ChromeDriver();
+        ChromeOptions ops = new ChromeOptions();
+        ops.addArguments("--remote-allow-origins=*");
+        driver1 = new ChromeDriver(ops);
         wait1 = new WebDriverWait(driver1, Duration.ofSeconds(5));
         driver1.manage().window().maximize();
         driver1.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));

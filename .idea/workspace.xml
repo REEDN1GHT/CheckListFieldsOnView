@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="334d5501-ff50-4432-acac-1c4435baeba2" name="Changes" comment="Actual Build v0.1.0">
+    <list default="true" id="334d5501-ff50-4432-acac-1c4435baeba2" name="Changes" comment="Actual Build v1.8.0&#10;Fix waitContentPage()">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CheckListFieldsOnView-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" afterPath="$PROJECT_DIR$/CheckListFieldsOnView-1.0-SNAPSHOT-jar-with-dependencies.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/drivers/chromedriver.exe" beforeDir="false" afterPath="$PROJECT_DIR$/drivers/chromedriver.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Page/ButtonEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/ButtonEvent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Page/SQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/SQL.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/GUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,7 +47,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;T:/aisbpek&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/macs0/Downloads/Анализ выполнения запросов&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
@@ -113,7 +115,14 @@
       <option name="project" value="LOCAL" />
       <updated>1677587501984</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Actual Build v1.8.0&#10;Fix waitContentPage()">
+      <created>1677740764490</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1677740764490</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -143,24 +152,25 @@
     <MESSAGE value="initial commit v0.0.1" />
     <MESSAGE value="Билд с работающими настройками" />
     <MESSAGE value="Actual Build v0.1.0" />
-    <option name="LAST_COMMIT_MESSAGE" value="Actual Build v0.1.0" />
+    <MESSAGE value="Actual Build v1.8.0&#10;Fix waitContentPage()" />
+    <option name="LAST_COMMIT_MESSAGE" value="Actual Build v1.8.0&#10;Fix waitContentPage()" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Page/ButtonEvent.java</url>
-          <line>158</line>
+          <line>159</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/Page/ButtonEvent.java</url>
-          <line>84</line>
+          <line>85</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/Page/ButtonEvent.java</url>
-          <line>105</line>
+          <line>106</line>
           <properties class="Page.ButtonEvent" method="ListFiilters">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
