@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="334d5501-ff50-4432-acac-1c4435baeba2" name="Changes" comment="Actual Build v1.8.0&#10;Fix waitContentPage()">
+    <list default="true" id="334d5501-ff50-4432-acac-1c4435baeba2" name="Changes" comment="test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CheckListFieldsOnView-1.0-SNAPSHOT-jar-with-dependencies.jar" beforeDir="false" afterPath="$PROJECT_DIR$/CheckListFieldsOnView-1.0-SNAPSHOT-jar-with-dependencies.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/drivers/chromedriver.exe" beforeDir="false" afterPath="$PROJECT_DIR$/drivers/chromedriver.exe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Page/ButtonEvent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/ButtonEvent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Page/SQL.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Page/SQL.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/GUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

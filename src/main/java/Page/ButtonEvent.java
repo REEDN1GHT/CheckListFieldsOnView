@@ -51,7 +51,7 @@ public class ButtonEvent extends BD implements ActionListener {
     }
     public void OpenFilters() {
         driver1.findElement(By.xpath("//*[@id='overlay']/flow-component-renderer/div/vaadin-vertical-layout/vaadin-tabs/vaadin-tab[1]")).click();
-        WebElement shadow = driver1.findElement(By.xpath("//vaadin-horizontal-layout/vaadin-combo-box"));
+        WebElement shadow = driver1.findElement(By.xpath("//vaadin-horizontal-layout/vaadin-combo-box[@placeholder='Не указано']"));
         SearchContext shadowRoot = shadow.getShadowRoot();
         shadowRoot.findElement(By.cssSelector("#toggleButton")).click();
     }
@@ -108,16 +108,16 @@ public class ButtonEvent extends BD implements ActionListener {
         int numElement = 0;
         int numAttribute = 0;
         int size = ListFiltersWeb.size();
-        driver1.findElement(By.xpath("//input[@role='combobox']")).sendKeys(Keys.DOWN);
+        driver1.findElement(By.xpath("//*[text()='Название поля']/following-sibling::input[@role='combobox']")).sendKeys(Keys.DOWN);
         while (numElement == numAttribute) {
-            String AttributeElement = driver1.findElement(By.xpath("//input[@role='combobox']")).getAttribute("aria-activedescendant");
+            String AttributeElement = driver1.findElement(By.xpath("//*[text()='Название поля']/following-sibling::input[@role='combobox']")).getAttribute("aria-activedescendant");
             numAttribute = Integer.parseInt(AttributeElement.replace("vaadin-combo-box-item-", ""));
             numElement = numElement + 1;
             String InnerText = driver1.findElement(By.xpath("//*[@id= \'" + AttributeElement + "\']")).getAttribute("innerText");
             ListFiltersWeb.add(InnerText);
             size = ListFiltersWeb.size();
-            driver1.findElement(By.xpath("//input[@role='combobox']")).sendKeys(Keys.DOWN);
-            AttributeElement = driver1.findElement(By.xpath("//input[@role='combobox']")).getAttribute("aria-activedescendant");
+            driver1.findElement(By.xpath("//*[text()='Название поля']/following-sibling::input[@role='combobox']")).sendKeys(Keys.DOWN);
+            AttributeElement = driver1.findElement(By.xpath("//*[text()='Название поля']/following-sibling::input[@role='combobox']")).getAttribute("aria-activedescendant");
             numAttribute = Integer.parseInt(AttributeElement.replace("vaadin-combo-box-item-", ""));
         }
         Collections.sort(ListFiltersWeb);
